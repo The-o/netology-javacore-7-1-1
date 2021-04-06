@@ -13,8 +13,14 @@ public class Calculator {
     public final BinaryOperator<Integer> plus = (x, y) -> x + y;
     public final BinaryOperator<Integer> minus = (x, y) -> x - y;
     public final BinaryOperator<Integer> multiply = (x, y) -> x * y;
-    public final BinaryOperator<Integer> divide = (x, y) -> x / y;
-
+    public final BinaryOperator<Integer> divide = (x, y) -> {
+        try {
+            return x / y;
+        } catch (ArithmeticException e) {
+            throw new DivideByZeroException();
+        }
+    };
+    
     public final UnaryOperator<Integer> sqr = (x) -> x * x;
     public final UnaryOperator<Integer> abs = (x) -> x < 0 ? -x : x;
 
